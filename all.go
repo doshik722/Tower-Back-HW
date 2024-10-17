@@ -93,6 +93,7 @@ func main() {
 	fmt.Print(s.IsExist(8))
 	s.Add(7)
 	s.Add(9)
+	s.Add(-1)
 	s.Add(10)
 	fmt.Print(s.Delete(8))
 	s.Add(21)
