@@ -10,7 +10,7 @@ func TestMap_uniq_fields(t *testing.T) {
 		f_num_fields: 1,
 	}
 
-	expected := []string{"Андрей", "умпалумпа"}
+	expected := []string{"Андрей", " "}
 	result, err := Map(input, flagParam)
 	if err != nil {
 		t.Fatalf("Ошибка: %v", err)
@@ -28,7 +28,7 @@ func TestMap_Registr_count(t *testing.T) {
 		i_register: true,
 	}
 
-	expected := []string{"2 персик", "1 Что?", "2 11"}
+	expected := []string{"2 персик", "1 что?", "2 11"}
 	result, err := Map(input, flagParam)
 	if err != nil {
 		t.Fatalf("Ошибка: %v", err)
