@@ -18,95 +18,95 @@ var (
 	i_ = flag.Bool("i", false, "не учитывать регистр букв")
 )
 
-type flags struct {
-	count_vhod   bool
-	dub_string   bool
-	uniq_string  bool
-	f_num_fields int
-	s_num_char   int
-	i_register   bool
+type Flags struct {
+	Count_vhod   bool
+	Dub_string   bool
+	Uniq_string  bool
+	F_num_fields int
+	S_num_char   int
+	I_register   bool
 }
 
-type OptionFunc func(*flags)
+type OptionFunc func(*Flags)
 
 func c() OptionFunc {
-	return func(f *flags) {
-		f.count_vhod = true
+	return func(f *Flags) {
+		f.Count_vhod = true
 	}
 }
 
 func d() OptionFunc {
-	return func(f *flags) {
-		f.dub_string = true
+	return func(f *Flags) {
+		f.Dub_string = true
 	}
 }
 
 func u() OptionFunc {
-	return func(f *flags) {
-		f.uniq_string = true
+	return func(f *Flags) {
+		f.Uniq_string = true
 	}
 }
 
 func f(n int) OptionFunc {
-	return func(f *flags) {
-		f.f_num_fields = n
+	return func(f *Flags) {
+		f.F_num_fields = n
 	}
 }
 
 func s(n int) OptionFunc {
-	return func(f *flags) {
-		f.s_num_char = n
+	return func(f *Flags) {
+		f.S_num_char = n
 	}
 }
 
 func i() OptionFunc {
-	return func(f *flags) {
-		f.i_register = true
+	return func(f *Flags) {
+		f.I_register = true
 	}
 }
 
-func Map(str []string, flag_param flags) ([]string, error) {
+func Map(str []string, flag_param Flags) ([]string, error) {
 	counts := make(map[string]int)
 	var final []string
 
 	for _, line := range str {
-		if flag_param.i_register {
+		if flag_param.I_register {
 			line = strings.ToLower(line)
 		}
 
-		if flag_param.f_num_fields > 0 {
+		if flag_param.F_num_fields > 0 {
 			fields := strings.Fields(line)
-			if len(fields) > flag_param.f_num_fields {
-				line = strings.Join(fields[flag_param.f_num_fields:], " ")
+			if len(fields) > flag_param.F_num_fields {
+				line = strings.Join(fields[flag_param.F_num_fields:], " ")
 			} else {
 				line = ""
 			}
 		}
 
-		if flag_param.s_num_char > 0 && len(line) > flag_param.s_num_char {
-			line = line[flag_param.s_num_char:]
+		if flag_param.S_num_char > 0 && len(line) > flag_param.S_num_char {
+			line = line[flag_param.S_num_char:]
 		}
 
 		counts[line]++
 	}
 
-	if (flag_param.uniq_string && flag_param.dub_string) || (flag_param.dub_string && flag_param.count_vhod) || (flag_param.uniq_string && flag_param.count_vhod) {
+	if (flag_param.Uniq_string && flag_param.Dub_string) || (flag_param.Dub_string && flag_param.Count_vhod) || (flag_param.Uniq_string && flag_param.Count_vhod) {
 		return nil, fmt.Errorf("нельзя использовать одновременно -c, -d и -u")
 	}
 
-	if flag_param.uniq_string {
+	if flag_param.Uniq_string {
 		for key, value := range counts {
 			if value == 1 {
 				final = append(final, key)
 			}
 		}
-	} else if flag_param.dub_string {
+	} else if flag_param.Dub_string {
 		for key, value := range counts {
 			if value > 1 {
 				final = append(final, key)
 			}
 		}
-	} else if flag_param.count_vhod {
+	} else if flag_param.Count_vhod {
 		for key, value := range counts {
 			final = append(final, strconv.Itoa(value)+" "+key)
 		}
@@ -169,13 +169,13 @@ func main() {
 	var lines = ReadFile(inputFile)
 	var out = WriteFile(outputFile)
 	defer out.Close()
-	flagParam := flags{
-		count_vhod:   *c_,
-		dub_string:   *d_,
-		uniq_string:  *u_,
-		f_num_fields: *f_,
-		s_num_char:   *s_,
-		i_register:   *i_,
+	flagParam := Flags{
+		Count_vhod:   *c_,
+		Dub_string:   *d_,
+		Uniq_string:  *u_,
+		F_num_fields: *f_,
+		S_num_char:   *s_,
+		I_register:   *i_,
 	}
 
 	linesOut, err := Map(lines, flagParam)

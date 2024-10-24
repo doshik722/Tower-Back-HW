@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="07fd6b25-fa8f-4880-ae7f-ecbb01e0c8c1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniq.go" beforeDir="false" afterPath="$PROJECT_DIR$/uniq.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uniq_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/uniq_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
