@@ -1,3 +1,5 @@
+uniq
+
 package main
 
 import "fmt"
@@ -99,3 +101,4 @@ func main() {
 	fmt.Print(s.IsExist(8))
 
 }
+main

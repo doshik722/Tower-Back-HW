@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+ uniq
+<module version="4">
+  <component name="Go" enabled="true" />
+
 <module type="WEB_MODULE" version="4">
   <component name="Go" enabled="true" />
   <component name="NewModuleRootManager">
@@ -6,4 +10,5 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+ main
 </module>
